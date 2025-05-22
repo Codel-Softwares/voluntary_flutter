@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:voluntary_flutter/services/auth_service.dart';
 //import 'register_screen.dart';
-//import 'feed_screen.dart';
+import 'feed_screen.dart';
 //import '../firebase_options.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -34,10 +34,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
     if (result == "success") {
       print("login success");
-      /*Navigator.pushReplacement(
+      Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const FeedScreen()),
-      );*/
+        MaterialPageRoute(builder: (context) => FeedScreen()),
+      );
     } else {
       setState(() => _errorMessage = result);
     }
