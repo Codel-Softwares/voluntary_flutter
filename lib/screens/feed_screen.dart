@@ -5,6 +5,9 @@ import 'package:firebase_storage/firebase_storage.dart';
 import '../models/post.dart';
 import '../widgets/post_card.dart';
 //import '../services/user_service.dart';
+import '../services/auth_service.dart';
+import 'post_view.dart';
+
 
 class FeedScreen extends StatefulWidget {
   @override
@@ -73,6 +76,20 @@ class _FeedScreenState extends State<FeedScreen> {
                 );
               },
             ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          final result = await Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const PostView()),
+          );
+          if (result == true) {
+            fetchPosts(); // Recarrega o feed se houve novo post
+          }
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.blue,
+        foregroundColor: Colors.white,
+      ),
     );
   }
 }
