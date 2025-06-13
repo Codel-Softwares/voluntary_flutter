@@ -104,11 +104,16 @@ class _PostViewState extends State<PostView> {
 
     try {
       await FirebaseFirestore.instance.collection('posts').add({
-        'imageUrl': imageUrl,
+        'imageUrl': imageUrl ?? '', // Use '' se a imagem for nula
         'description': _descriptionController.text,
         'tags': _tagsController.text.split(',').map((e) => e.trim()).toList(),
         'createdAt': Timestamp.now(),
         'userUid': user.uid,
+        'username': _userNome,         
+        'userProfileImage': _imagemPerfil, 
+        'tipoPerfil': _tipoPerfil,
+        'likes': 0, // Inicializa likes
+        'likedBy': [], // Inicializa likedBy
         'location': _location != null
             ? {
                 'latitude': _location!.latitude,
